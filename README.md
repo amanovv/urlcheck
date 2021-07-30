@@ -22,7 +22,12 @@ Approaches are:
     - Basically, creating word vectors for each word based on reference model that has been trained on large dataset
     - Captures word similarities pretty well
 
-Eventually, I combine all features from above 3 approaches and train simple Logistic Regression model using scikit-learn
+Eventually, I combine all features from above 3 approaches and train simple Logistic Regression model using scikit-learn.
+
+The Results are: 
+- Testing accuracy of 79.9% 
+- Precision: 72.3% | lost of False Positives: Real news sometimes classified as Fake, probably some smaller scale news channels look like fake news site
+- Recall: 90.8%  | doing pretty well on False Negatives: Not classifying fake news as real which is good, at least not helping with misinformation lol
 
 *Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deplot it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
