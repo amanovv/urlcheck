@@ -24,8 +24,7 @@ Approaches are:
 
 Eventually, I combine all features from above 3 approaches and train simple Logistic Regression model using scikit-learn
 
-*Currently, trying to fix environment file issues on streamlit. It gives error for finding packages which I suspect because
-I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
+*Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deplot it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
 
 To use it now on your local host: 
