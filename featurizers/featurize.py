@@ -74,7 +74,7 @@ def glove_transform_data_descriptions(descriptions,glove, vect_size):
                 found_words += 1
                 X[i] += vec
                 
-        # We divide the sum by the number of words added, so we have the
+        # divide the sum by the number of words added, so then have the
         # average word vector.
         if found_words > 0:
             X[i] /= found_words
@@ -88,9 +88,9 @@ def prepare_data(data, featurizer):
     y = []
     for datapoint in data:
         url, html, label = datapoint
-        # We convert all text in HTML to lowercase, so <p>Hello.</p> is mapped to
-        # <p>hello</p>. This will help us later when we extract features from 
-        # the HTML, as we will be able to rely on the HTML being lowercase.
+        # convert all text in HTML to lowercase, so <p>Hello.</p> is mapped to
+        # <p>hello</p>. This will help later when extracting features from 
+        # the HTML, as will be able to rely on the HTML being lowercase.
         html = html.lower() 
         y.append(label)
 
