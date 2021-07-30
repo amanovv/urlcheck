@@ -109,7 +109,7 @@ def featurize_data_pair(url, html,vectorizer,glove, glove_vect_size):
 def download_model():
 
   # Downloading stuff from google drive using wget sucks
-  # Dropbox is the solution, I figures
+  # Dropbox is the solution, I figured
 
   data_url = 'https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing'
 
