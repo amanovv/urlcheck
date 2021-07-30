@@ -28,12 +28,14 @@ Eventually, I combine all features from above 3 approaches and train simple Logi
 I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
 
-==============================================
+===================================================================================
 
 Current work ongoing on:
+
     - Giving possiblity of training model from scratch by taking user specified hyperparemeters
     - Adding model selections, like neural networks, decision trees, random forest classifier
 
 Future potential extension:
+
     - Making state-of-art model chrome extension
     - Creating executable or apk/ios probably
