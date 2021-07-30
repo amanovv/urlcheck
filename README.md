@@ -41,6 +41,8 @@ Neural networks usually give better results, that is expected. However, most com
 *Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deploy it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
 
+*One more note if you are on Mac M1 and hence using mini-forge, you might have some bug on running some tensorflow features, gives memory error*
+
 To use it now on your local host: 
 
     - Clone the repo
@@ -48,7 +50,7 @@ To use it now on your local host:
     - run:
         > streamlit run streamlit_run.py
 
-<img src="https://media.giphy.com/media/UDMnSA61SWKyHCq8RS/giphy.gif" width="800" height="500" />
+<img src="https://media.giphy.com/media/UDMnSA61SWKyHCq8RS/giphy.gif" width="900" height="600" />
 
 ===================================================================================
 
