@@ -60,7 +60,7 @@ def main():
       output_nn = loaded_model_nn.predict(np.array(input_X_nn))
       prediction = loaded_model_nn.predict_classes(np.array(input_X_nn))
 
-      
+
       st.balloons()
       st.write("Results with Logistic Regression")
 
@@ -177,7 +177,7 @@ def download_model():
   os.system(f"wget -O LR_model.pkl 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=0' ")
 
   #neural network download
-  os.system(f"wget -O model.h5 'https://www.dropbox.com/s/npdk4yzqoi69362/cnn_model.h5?dl=0' ")
+  os.system(f"wget -O model.h5 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=0' ")
   #os.system(f"wget -O model.json 'https://www.dropbox.com/s/kerf3fljhvsxpq9/nn_model.json?dl=0' ")
   #json_file = open('model.json', 'r')
   #loaded_model_json = json_file.read()

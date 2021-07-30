@@ -26,10 +26,17 @@ Approaches are:
 
 Eventually, I combine all features from above 3 approaches and train simple Logistic Regression model using scikit-learn.
 
-The Results are: 
-- Testing accuracy of 79.9% 
-- Precision: 72.3% | lots of False Positives: Real news sometimes classified as Fake, probably some smaller scale news channels look like fake news site
-- Recall: 90.8%  | doing pretty well on False Negatives: Not classifying fake news as real which is good, at least not helping with misinformation lol
+The Results are:
+- Logistic Regression
+    - Testing accuracy of 79.9% 
+    - Precision: 72.3% | lots of False Positives: Real news sometimes classified as Fake, probably some smaller scale news channels look like fake news site
+    - Recall: 90.8%  | doing pretty well on False Negatives: Not classifying fake news as real which is good, at least not helping with misinformation lol
+- Neural Networks:
+    - Testing accuracy: 83.5%
+    - Precision: 76% | doing better in False Positives
+    - Recall: 92.9% | Really good
+
+Neural networks usually give better results, that is expected. However, most companies prefer more explainable model which is going to be Logistic Regression. Neural networks are hard to explain since, they don't learn about features, I would say, they just transform data representation to more abstract hyperplane.
 
 *Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deploy it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
