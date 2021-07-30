@@ -2,7 +2,7 @@
 
 # urlcheck
 
-# Streamlit app to check whether certain news is fake or real based on Logistic Regression model
+# Streamlit app to check whether certain news is fake or real using Machine Learning models
 
 #### I used multiple featurizers to classify fake vs real news
 
