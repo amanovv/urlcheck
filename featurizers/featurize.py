@@ -2,7 +2,8 @@ import requests, zipfile
 import streamlit as  st
 from sklearn.feature_extraction.text import CountVectorizer
 import math
-
+from tqdm import tqdm
+from bs4 import BeautifulSoup as bs
 ######### DOMAIN NAME and KEYWORD featurizer ################
 
 # Gets the log count of a phrase/keyword in HTML (transforming the phrase/keyword
@@ -39,12 +40,28 @@ def keyword_featurizer(url, html):
 
 
 ######### Bag of Words featurizer ################
+def get_description_from_html(html):
+  soup = bs(html)
+  description_tag = soup.find('meta', attrs={'name':'og:description'}) or soup.find('meta', attrs={'property':'description'}) or soup.find('meta', attrs={'name':'description'})
+  if description_tag:
+    description = description_tag.get('content') or ''
+  else: # If there is no description, return empty string.
+    description = ''
+  return description
 
-
+def get_descriptions_from_data(data):
+  # A dictionary mapping from url to description for the websites in 
+  # train_data.
+  descriptions = []
+  for site in tqdm(data):
+    url, html, label = site
+    descriptions.append(get_description_from_html(html))
+  return descriptions
 
 def vectorize_data_descriptions(data_descriptions, ref_data, n_features =300):
   vectorizer = CountVectorizer(max_features=n_features)
-  vectorizer.fit(ref_data)
+  ref_descriptions = get_descriptions_from_data(ref_data)
+  vectorizer.fit(ref_descriptions)
   X = vectorizer.transform(data_descriptions).todense()
   return X
 

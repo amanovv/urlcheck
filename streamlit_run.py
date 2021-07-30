@@ -1,5 +1,5 @@
 import streamlit as st
-#import os
+import os
 #import urllib
 #import tensorflow as tf
 #import pandas as pd 
@@ -7,16 +7,16 @@ import streamlit as st
 #import time
 import pickle
 import wget
+
 import requests, zipfile
 import numpy as np
-from featurizers.featurize import keyword_featurizer, vectorize_data_descriptions, glove_transform_data_descriptions
-from bs4 import BeautifulSoup as bs
+from featurizers.featurize import keyword_featurizer, vectorize_data_descriptions, glove_transform_data_descriptions,get_description_from_html
+
 from torchtext.vocab import GloVe
 
 def main():
-  
-  vec_data, loaded_model, glove = download_files(glove_vect_size=300)
-
+  vec_data, loaded_model = download_model()
+  glove = download_files(glove_vect_size=300)
   st.title("Fake news check")
   st.header("Paste the url of the news and you can check whether it is fake or real")
   
@@ -29,9 +29,9 @@ def main():
 
     news_url = st.text_input("Paste news url")
 
-    url_ , html = get_data_pair(news_url)
+    url, html = get_data_pair(news_url)
 
-    input_X = featurize_data_pair(url_,html,vec_data,glove,glove_vect_size=300)
+    input_X = featurize_data_pair(url,html,vec_data,glove,glove_vect_size=300)
 
     y_output = loaded_model.predict(input_X)[0]
 
@@ -44,19 +44,10 @@ def main():
   elif app_mode == "Train from scratch":
     st.multiselect('Select with methods you want to use', 
     ['keyword featurizer', 'Bag of Words', 'GloVe word vectors'])
- 
-
-def get_description_from_html(html):
-  soup = bs(html)
-  description_tag = soup.find('meta', attrs={'name':'og:description'}) or soup.find('meta', attrs={'property':'description'}) or soup.find('meta', attrs={'name':'description'})
-  if description_tag:
-    description = description_tag.get('content') or ''
-  else: # If there is no description, return empty string.
-    description = ''
-  return description
 
 
-def get_data_pair(url):
+
+def get_data_pair(url='https://finance.yahoo.com'):
   if not url.startswith('http'):
       url = 'http://' + url
   url_pretty = url
@@ -84,7 +75,7 @@ def featurize_data_pair(url, html,ref_data,glove, glove_vect_size):
   # Approach 2.
   description = get_description_from_html(html)
   
-  bow_X = vectorize_data_descriptions([description],ref_data)
+  bow_X = vectorize_data_descriptions([description],ref_data,n_features=300)
   
   # Approach 3.
   glove_X = glove_transform_data_descriptions([description], glove, glove_vect_size)
@@ -93,83 +84,53 @@ def featurize_data_pair(url, html,ref_data,glove, glove_vect_size):
   
   return X
 
-@st.cache()
+
+
+@st.cache
+def download_model():
+  data_url = 'https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing'
+
+  data_url_dropbox = 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=0'
+
+  url_dropbox = 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=0'
+
+  url = 'https://drive.google.com/file/d/1W6iQHmge5bhYjEpi2bwuwhj0lK3BMMhk/view?usp=sharing'
+
+  os.system(f"wget -O data.zip 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=0' ")
+  os.system(f"wget -O LR_model.pkl 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=0' ")
+
+  #output = "LR_model.pkl"
+  #output1 = 'data.zip'
+  #gdown.download(url,output)
+  #gdown.download(data_url,output1)
+
+  with open("LR_model.pkl", 'rb') as file:  
+    loaded_model = pickle.load(file)
+  #loaded_model = pickle.load(open('LR_model.sav','rb'))
+
+  with zipfile.ZipFile('data.zip','r') as zipObj:
+    zipObj.extractall()
+  
+  with open('train_val_data.pkl', 'rb') as f:
+    train_data, val_data = pickle.load(f)
+
+  return train_data, loaded_model
+
+
+#@st.cache()
 def download_files(glove_vect_size):
   # downloading file requires some work
   VEC_SIZE = glove_vect_size
   glove = GloVe(name='6B', dim=VEC_SIZE)
-  finished = 0
-  while finished == 0:
-    st.spinner()
-    data_url = "https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing"
+  #finished = 0
+  #while finished == 0:
+    #st.spinner()
 
-    url = "https://drive.google.com/file/d/1EK01cw3cEe8ikDk2PZ8O3PAxyCj0HYmw/view?usp=sharing"
-    filename = wget.download(url)
-    loaded_model = pickle.load(open(filename, 'rb'))
-    finished = 1
-    datafile = wget.download(data_url)
-    with zipfile.ZipFile(datafile,'r') as zipObj:
-      zipObj.extractall()
-    
+    #os.system(f"gdown https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing -O data.zip")
 
-    train_data, val_data = pickle.load(train_val_data.pkl)
-
-  return train_data, loaded_model, glove
+    #os.system(f"gdown https://drive.google.com/file/d/1W6iQHmge5bhYjEpi2bwuwhj0lK3BMMhk/view?usp=sharing -O LR_model.pkl")
+  return glove
 
 
 if __name__ == "__main__":
     main()
-
-
-'''
-
-
-#filename = tf.keras.utils.get_file("emotion_detection_model_for_streamlit.h5", url)
-EMOTIONS = ['ANGRY', 'HAPPY', 'SAD', 'SURPRISE', 'NEUTRAL']
-
-st.title("Emotion Detector")
-st.header("This app detects your emotions! upload a picture to try it out!")
-
-model = tf.keras.models.load_model("emotion_detection_model_for_streamlit.h5")
-#model_lm = tf.keras.models.load_model("best_lm_model.h5")
-f = st.file_uploader("Upload Image")
-
-if f is not None: 
-  # Extract and display the image
-  file_bytes = np.asarray(bytearray(f.read()), dtype=np.uint8)
-  image = cv2.imdecode(file_bytes, 1)
-  st.image(image, channels="BGR")
-
-  # Prepare the image
-  resized = cv2.resize(image, (48, 48), interpolation=cv2.INTER_LANCZOS4)
-  gray_1d = np.mean(resized, axis=-1)
-  gray = np.zeros_like(resized)
-  gray[:,:,0] = gray_1d
-  gray[:,:,1] = gray_1d
-  gray[:,:,2] = gray_1d
-  normalized = gray/255
-  model_input = np.expand_dims(normalized,0)
-
-  # Run the model
-  scores_transfer = model.predict(model_input)
-  #scores_lm_model = model_lm.predict(model_input.reshape())
-
-  with st.spinner(text='predicting ...'):
-      time.sleep(5)
-      st.success('Prediction done')
-
-  st.balloons()
-  # Print results and plot score
-  st.write(f"The predicted emotion with transfer learning is: {EMOTIONS[scores_transfer.argmax()]}")
-
-
-  df = pd.DataFrame(scores_transfer.flatten(), columns = EMOTIONS)
-  #df["Emotion"] = EMOTIONS
-  #df["Scores_transfer"] = scores_transfer.flatten()
-
-
-  st.area_chart(df)
-  st.balloons()
-
-  
-'''
