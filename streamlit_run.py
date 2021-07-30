@@ -1,10 +1,5 @@
 import streamlit as st
 import os
-#import urllib
-#import tensorflow as tf
-#import pandas as pd 
-#import cv2
-#import time
 import pickle
 import wget
 from tqdm import tqdm
@@ -16,6 +11,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from torchtext.vocab import GloVe
 
 def main():
+
+  st.write("Downloading some usefull stuff, it may take some time ~ 5 mins")
   vectorizer, loaded_model = download_model()
   glove = download_files(glove_vect_size=300)
   st.title("Fake news check")
@@ -110,6 +107,10 @@ def featurize_data_pair(url, html,vectorizer,glove, glove_vect_size):
 
 @st.cache
 def download_model():
+
+  # Downloading stuff from google drive using wget sucks
+  # Dropbox is the solution, I figures
+
   data_url = 'https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing'
 
   data_url_dropbox = 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=0'
@@ -149,13 +150,6 @@ def download_files(glove_vect_size):
   # downloading file requires some work
   VEC_SIZE = glove_vect_size
   glove = GloVe(name='6B', dim=VEC_SIZE)
-  #finished = 0
-  #while finished == 0:
-    #st.spinner()
-
-    #os.system(f"gdown https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing -O data.zip")
-
-    #os.system(f"gdown https://drive.google.com/file/d/1W6iQHmge5bhYjEpi2bwuwhj0lK3BMMhk/view?usp=sharing -O LR_model.pkl")
   return glove
 
 
