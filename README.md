@@ -41,7 +41,7 @@ To use it now on your local host:
     - run:
         > streamlit run streamlit_run.py
 
-![Example]("https://media.giphy.com/media/UDMnSA61SWKyHCq8RS/giphy.gif" | width=100)
+<img src="https://media.giphy.com/media/UDMnSA61SWKyHCq8RS/giphy.gif" width="400" height="300" />
 
 ===================================================================================
 
