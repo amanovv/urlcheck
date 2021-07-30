@@ -31,7 +31,7 @@ The Results are:
 - Precision: 72.3% | lots of False Positives: Real news sometimes classified as Fake, probably some smaller scale news channels look like fake news site
 - Recall: 90.8%  | doing pretty well on False Negatives: Not classifying fake news as real which is good, at least not helping with misinformation lol
 
-*Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deplot it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
+*Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deploy it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
 
 To use it now on your local host: 
@@ -45,7 +45,7 @@ To use it now on your local host:
 
 Current work ongoing on:
 
-    - Giving possiblity of training model from scratch by taking user specified hyperparemeters
+    - Giving possibility of training model from scratch by taking user specified hyperparemeters
     - Adding model selections, like neural networks, decision trees, random forest classifier
 
 Future potential extension:
