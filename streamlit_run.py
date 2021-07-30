@@ -12,9 +12,10 @@ from torchtext.vocab import GloVe
 
 def main():
 
-  st.write("Downloading some usefull stuff, it may take some time ~ 5 mins")
+  st.spinner("Downloading some usefull stuff, it may take some time ~ 5 mins")
   vectorizer, loaded_model = download_model()
   glove = download_files(glove_vect_size=300)
+
   st.title("Fake news check")
   st.header("Paste the url of the news and you can check whether it is fake or real")
   
@@ -35,13 +36,20 @@ def main():
       input_X = featurize_data_pair(url,html,vectorizer,glove,glove_vect_size=300)
 
       y_output = loaded_model.predict(input_X)[0]
+      probs=loaded_model.predict_proba(input_X)
 
+      st.balloons()
+      st.success("REALNESS percentage: ")
+      st.write("URL appears to be: ", str(round(probs[0][0]*100, 2)) + "%", "real")
+      st.error("FAKENESS percentage: ")
+      st.write("URL appears to be: ", str(round(probs[0][1]*100, 2)) + "%", "fake")
+      
       if y_output < 0.5:
-        st.balloons()
-        st.write("Url appears to be real news")
+        st.write("URL appears to be real news")
       else:
-        st.write("ATTENTION, url appears to be fake news")
+        st.write("ATTENTION, URL appears to be fake news")
         st.warning("Please check the news source and also reporter's bio")
+      
 
   elif app_mode == "Train from scratch":
     st.multiselect('Select with methods you want to use', 
