@@ -41,7 +41,7 @@ To use it now on your local host:
     - run:
         > streamlit run streamlit_run.py
 
-[](<iframe src="https://giphy.com/embed/UDMnSA61SWKyHCq8RS" width="480" height="278" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/UDMnSA61SWKyHCq8RS">via GIPHY</a></p>)
+![](<iframe src="https://giphy.com/embed/UDMnSA61SWKyHCq8RS" width="480" height="278" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/UDMnSA61SWKyHCq8RS">via GIPHY</a></p>)
 
 ===================================================================================
 
