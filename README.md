@@ -44,5 +44,5 @@ Current work ongoing on:
 
 Future potential extension:
 
-    - Making state-of-art model chrome extension
+    - Training state-of-art model and making it chrome extension
     - Creating executable or apk/ios probably
