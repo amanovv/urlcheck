@@ -1,3 +1,5 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/amanovv/urlcheck/main/streamlit_run.py)
+
 # urlcheck
 
 # Streamlit app to check whether certain news is fake or real based on Logistic Regression model
