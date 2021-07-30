@@ -50,7 +50,7 @@ To use it now on your local host:
     - run:
         > streamlit run streamlit_run.py
 
-<img src="https://media.giphy.com/media/UDMnSA61SWKyHCq8RS/giphy.gif" width="900" height="600" />
+<img src="https://media.giphy.com/media/UDMnSA61SWKyHCq8RS/giphy.gif" width="600" height="500" />
 
 ===================================================================================
 
