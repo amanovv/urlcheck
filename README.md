@@ -28,6 +28,13 @@ Eventually, I combine all features from above 3 approaches and train simple Logi
 I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
 I will give a try with my linux environment*
 
+To use it now on your local host: 
+
+    - Clone the repo
+    - Install streamlit and other packages used/imported
+    - run:
+        > streamlit run streamlit_run.py
+
 ===================================================================================
 
 Current work ongoing on:
