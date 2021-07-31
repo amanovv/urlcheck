@@ -1,12 +1,14 @@
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/amanovv/urlcheck)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/amanovv/urlcheck/main/streamlit_run.py)
 
 # urlcheck
 
 # Streamlit app to check whether certain news is fake or real using Machine Learning models
 
-#### I used multiple featurizers to classify fake vs real news
+*Just clip to Open in Streamlit icon and it should to be all good to run :)*
+*This is NLP models so requires some processing, it may take some to load the web app for the first time*
 
-When you first time load app, it will need to download couple of stuff including AI model file
+
+#### I used multiple featurizers to classify fake vs real news
 
 Approaches are:
 
@@ -38,17 +40,6 @@ The Results are:
 
 Neural networks usually give better results, that is expected. However, most companies prefer more explainable model which is going to be Logistic Regression. Neural networks are hard to explain since, they don't learn about features, I would say, they just transform data representation to more abstract hyperplane.
 
-*Currently, trying to fix environment file issues on streamlit. It gives error for finding packages when trying to deploy it on streamlit server which I suspect it is because I used mini-forge to manage my virtual envs since Mac M1 doesn't support conda-forge for now. 
-I will give a try with my linux environment*
-
-*One more note if you are on Mac M1 and hence using mini-forge, you might have some bug on running some tensorflow features, gives memory error*
-
-To use it now on your local host: 
-
-    - Clone the repo
-    - Install streamlit and other packages used/imported
-    - run:
-        > streamlit run streamlit_run.py
 
 ![Example use](demo.gif)
 
