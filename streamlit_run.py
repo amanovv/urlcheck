@@ -63,7 +63,7 @@ def main():
 
 
       st.balloons()
-      st.write("Results with Logistic Regression")
+      st.subheader("Here is what simple machine learning model thinks:")
 
       st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
       #st.write("URL appears to be: ", str(round(probs[0][0]*100, 2)) + "%", "real")
@@ -75,7 +75,7 @@ def main():
         st.write("ATTENTION, URL appears to be fake news")
         st.warning("Please check the news source and also reporter's bio")
 
-      st.write("Results with Neural Network")  
+      st.subheader("Here is what neural network thinks:")  
       #st.subheader("Oooooo, you are using neural networks")
       #input_X_nn = featurize_data_pair(url,html,vectorizer_nn,glove,glove_vect_size=300)
       
