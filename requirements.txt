@@ -2,7 +2,6 @@ absl-py==0.13.0
 alabaster==0.7.8
 altair==4.1.0
 appdirs==1.4.3
-apturl==0.5.2
 argon2-cffi==20.1.0
 astor==0.8.1
 astunparse==1.6.3
