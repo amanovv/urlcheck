@@ -4,7 +4,7 @@
 
 # Streamlit app to check whether certain news is fake or real using Machine Learning models
 
-*Just click to Open in Streamlit icon and it should to be all good to run :)*
+*Just click to Open in Streamlit icon and it should be all good to run :)*
 
 *App uses NLP models so requires some heavy back-end download, it may take some time to load the web app for the first time run*
 
