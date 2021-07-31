@@ -9,7 +9,7 @@ import numpy as np
 from featurizers.featurize import keyword_featurizer, vectorize_data_descriptions, glove_transform_data_descriptions
 from sklearn.feature_extraction.text import CountVectorizer
 from torchtext.vocab import GloVe
-
+import urllib
 import tensorflow.keras
 import tensorflow as tf
 from tensorflow.keras.models import load_model
@@ -167,17 +167,26 @@ def download_model():
 
   data_url = 'https://drive.google.com/file/d/1CSR2pyZfHCKqurdT5KYsseMiCfAblL_t/view?usp=sharing'
 
-  data_url_dropbox = 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=0'
+  data_url_dropbox = 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=1'
 
-  url_dropbox = 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=0'
+  url_dropbox = 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=1'
 
   url = 'https://drive.google.com/file/d/1W6iQHmge5bhYjEpi2bwuwhj0lK3BMMhk/view?usp=sharing'
 
-  os.system(f"wget -O data.zip 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=1' ")
-  os.system(f"wget -O LR_model.pkl 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=1' ")
+  #os.system(f"wget -O data.zip 'https://www.dropbox.com/s/5jqlxaoxf3hlsrh/newsdata.zip?dl=1' ")
+  #os.system(f"wget -O LR_model.pkl 'https://www.dropbox.com/s/f2m04sl0gn4140f/LR_model.pkl?dl=1' ")
 
   #neural network download
-  os.system(f"wget -O model.h5 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=1' ")
+  neural_url = 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=1'
+
+  data_filename = 'data.zip'
+  lr_filename = 'LR_model.pkl'
+  nn_filename = "model.h5"
+
+  wget.download(data_url_dropbox, data_filename)
+  wget.download(url_dropbox, lr_filename)
+  wget.download(neural_url,nn_filename)
+  #os.system(f"wget -O model.h5 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=1' ")
   #os.system(f"wget -O model.json 'https://www.dropbox.com/s/kerf3fljhvsxpq9/nn_model.json?dl=0' ")
   #json_file = open('model.json', 'r')
   #loaded_model_json = json_file.read()
