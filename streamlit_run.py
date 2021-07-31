@@ -185,7 +185,9 @@ def download_model():
   #loaded_model_nn = model_from_json(loaded_model_json)
   #loaded_model_nn.load_weights("model.h5")
   #loaded_model_nn._make_predict_function()
-  loaded_model_nn = load_model("model.h5")
+  path_start = '.'
+  
+  loaded_model_nn = load_model(os.path.join(path_start, 'model.h5'))
 
   
 
