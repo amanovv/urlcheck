@@ -45,7 +45,7 @@ The Results are:
 Neural networks usually give better results, that is expected. However, most companies prefer more explainable model which is going to be Logistic Regression. Neural networks are hard to explain since, they don't learn about features, I would say, they just transform data representation to more abstract hyperplane.
 
 
-![Example use](demo.gif)
+![Example use](demo_final.gif)
 
 ===================================================================================
 
