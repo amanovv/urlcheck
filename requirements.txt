@@ -168,6 +168,5 @@ wget==3.2
 widgetsnbextension==3.5.1
 wrapt==1.12.1
 xdot==1.1
-xkit==0.0.0
 xonsh==0.9.13
 zipp==1.0.0
