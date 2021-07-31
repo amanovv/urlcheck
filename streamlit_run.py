@@ -27,26 +27,15 @@ def main():
   app_mode = st.sidebar.selectbox("Choose the modes here", 
   ["Use directly pre-trained", "Train from scratch"])
   
-  
-  #st.spinner("Downloading some usefull stuff, it may take some time ~ 5 mins")
-  
-  
 
-  
-  
   if app_mode == "Use directly pre-trained":
     st.title("Fake news check")
     st.header("Paste the url of the news and you can check whether it is fake or real")
     st.sidebar.success('provide the url for the news')
     #selection = st.selectbox('Select which model to use for classification',['Neural Network','Logistic Regression'])
     #if selection == 'Neural Network':
-      
-
-      
-    
     
     #elif selection == 'Logistic Regression':
-      #, loaded_model_lr = download_model(max_features = 300)
 
     news_url = st.text_input("Paste news url")
     button = st.button('Summon AI fact checker')
@@ -66,9 +55,7 @@ def main():
       st.subheader("Here is what simple machine learning model thinks:")
 
       st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
-      #st.write("URL appears to be: ", str(round(probs[0][0]*100, 2)) + "%", "real")
       st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
-      #st.write("URL appears to be: ", str(round(probs[0][1]*100, 2)) + "%", "fake")
       if y_output < 0.5:
         st.write("URL appears to be real news")
       else:
@@ -77,13 +64,10 @@ def main():
 
       st.subheader("Here is what neural network thinks:")  
       #st.subheader("Oooooo, you are using neural networks")
-      #input_X_nn = featurize_data_pair(url,html,vectorizer_nn,glove,glove_vect_size=300)
       
       
       st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
-      #st.write("URL appears to be: ", )
       st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "% " + "fake"))
-      #st.write("URL appears to be: ", str(round(probs[0][1]*100, 2)) + "%", "fake")
       
       if prediction[0] < 0.5:
         st.write("URL appears to be real news")
@@ -203,8 +187,6 @@ def download_model():
   
 
   
-
-  
   #with zipfile.ZipFile('data.zip','r') as zipObj:
   #  zipObj.extractall()
   
@@ -236,9 +218,8 @@ def download_model():
   return vectorizer_lr, vectorizer_nn, loaded_model, loaded_model_nn
 
 
-#@st.cache()
+#@st.cache(), no need for streamlit caching, torchtext does caching automatically
 def download_files(glove_vect_size):
-  # downloading file requires some work
   VEC_SIZE = glove_vect_size
   glove = GloVe(name='6B', dim=VEC_SIZE)
   return glove
