@@ -92,7 +92,7 @@ def main():
         st.warning("Please check the news source and also reporter's bio")
 
       st.write("Here is Neural Network architecture details that you are using")
-      st.write(loaded_model_nn.summary())
+      st.write(loaded_model_nn)
       
 
   elif app_mode == "Train from scratch":
