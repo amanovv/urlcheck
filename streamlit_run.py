@@ -178,14 +178,16 @@ def download_model():
 
   #neural network download
   neural_url = 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=1'
-
-  data_filename = 'data.zip'
+  desc_url = 'https://www.dropbox.com/s/30k1oq8ka4exn62/descriptions.pkl?dl=1'
+  #data_filename = 'data.zip'
   lr_filename = 'LR_model.pkl'
   nn_filename = "model.h5"
-
-  wget.download(data_url_dropbox, data_filename)
+  desc_filename = 'description.pkl'
+  
+  #wget.download(data_url_dropbox, data_filename)
   wget.download(url_dropbox, lr_filename)
   wget.download(neural_url,nn_filename)
+  wget.download(desc_url, desc_filaname)
   #os.system(f"wget -O model.h5 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=1' ")
   #os.system(f"wget -O model.json 'https://www.dropbox.com/s/kerf3fljhvsxpq9/nn_model.json?dl=0' ")
   #json_file = open('model.json', 'r')
@@ -203,18 +205,20 @@ def download_model():
   
 
   
-  with zipfile.ZipFile('data.zip','r') as zipObj:
-    zipObj.extractall()
+  #with zipfile.ZipFile('data.zip','r') as zipObj:
+  #  zipObj.extractall()
   
-  with open('train_val_data.pkl', 'rb') as f:
-    train_data, val_data = pickle.load(f)
+  #with open('train_val_data.pkl', 'rb') as f:
+  #  train_data, val_data = pickle.load(f)
   #output = "LR_model.pkl"
   #output1 = 'data.zip'
   #gdown.download(url,output)
   #gdown.download(data_url,output1)
+  with open("description.pkl", 'rb') as file:  
+      ref_desc_pickle = pickle.load(file)
   with open("LR_model.pkl", 'rb') as file:  
       loaded_model = pickle.load(file)
-  ref_descriptions = get_descriptions_from_data(train_data)
+  #ref_descriptions = get_descriptions_from_data(train_data)
   #if max_features == 300:
   vectorizer_lr = CountVectorizer(max_features=300)
   #elif max_features == 685:
@@ -226,8 +230,8 @@ def download_model():
     
   #loaded_model = pickle.load(open('LR_model.sav','rb'))
 
-  vectorizer_lr.fit(ref_descriptions)
-  vectorizer_nn.fit(ref_descriptions)
+  vectorizer_lr.fit(ref_desc_pickle)
+  vectorizer_nn.fit(ref_desc_pickle)
 
   return vectorizer_lr, vectorizer_nn, loaded_model, loaded_model_nn
 
