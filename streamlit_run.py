@@ -187,7 +187,7 @@ def download_model():
   #wget.download(data_url_dropbox, data_filename)
   wget.download(url_dropbox, lr_filename)
   wget.download(neural_url,nn_filename)
-  wget.download(desc_url, desc_filaname)
+  wget.download(desc_url, desc_filename)
   #os.system(f"wget -O model.h5 'https://www.dropbox.com/s/e2li9c9h8qv0yha/cnn2_model.h5?dl=1' ")
   #os.system(f"wget -O model.json 'https://www.dropbox.com/s/kerf3fljhvsxpq9/nn_model.json?dl=0' ")
   #json_file = open('model.json', 'r')
