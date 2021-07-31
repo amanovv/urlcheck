@@ -105,7 +105,6 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycairo==1.16.2
 pycparser==2.20
-pycups==1.9.73
 pydeck==0.6.2
 Pygments==2.9.0
 PyJWT==1.7.1
