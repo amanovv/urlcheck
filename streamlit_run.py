@@ -91,8 +91,8 @@ def main():
         st.write("ATTENTION, URL appears to be fake news")
         st.warning("Please check the news source and also reporter's bio")
 
-      st.write("Here is Neural Network architecture details that you are using")
-      st.write(loaded_model_nn)
+      #st.write("Here is Neural Network architecture details that you are using")
+      #st.write(loaded_model_nn)
       
 
   elif app_mode == "Train from scratch":
