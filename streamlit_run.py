@@ -9,9 +9,10 @@ import numpy as np
 from featurizers.featurize import keyword_featurizer, vectorize_data_descriptions, glove_transform_data_descriptions
 from sklearn.feature_extraction.text import CountVectorizer
 from torchtext.vocab import GloVe
-from keras.models import load_model
+
 import tensorflow.keras
 import tensorflow as tf
+from tensorflow.keras.models import load_model
 import tensorflow.keras.optimizers as optimizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Activation, MaxPooling2D, Dropout, Flatten, Reshape, Dense, Conv2D
@@ -158,7 +159,6 @@ def featurize_data_pair(url, html,vectorizer, vectorizer_nn, glove, glove_vect_s
   return X, X_nn
 
 
-
 @st.cache(allow_output_mutation=True)
 def download_model():
 
@@ -203,7 +203,7 @@ def download_model():
   #gdown.download(data_url,output1)
   with open("LR_model.pkl", 'rb') as file:  
       loaded_model = pickle.load(file)
-  ref_descriptions = get_descriptions_from_data(val_data)
+  ref_descriptions = get_descriptions_from_data(train_data)
   #if max_features == 300:
   vectorizer_lr = CountVectorizer(max_features=300)
   #elif max_features == 685:
