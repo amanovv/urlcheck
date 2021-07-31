@@ -65,9 +65,9 @@ def main():
       st.balloons()
       st.write("Results with Logistic Regression")
 
-      st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "%" + "real"))
+      st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
       #st.write("URL appears to be: ", str(round(probs[0][0]*100, 2)) + "%", "real")
-      st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "%" + "fake"))
+      st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
       #st.write("URL appears to be: ", str(round(probs[0][1]*100, 2)) + "%", "fake")
       if y_output < 0.5:
         st.write("URL appears to be real news")
@@ -80,9 +80,9 @@ def main():
       #input_X_nn = featurize_data_pair(url,html,vectorizer_nn,glove,glove_vect_size=300)
       
       
-      st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "%", "real"))
+      st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
       #st.write("URL appears to be: ", )
-      st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "%", "fake"))
+      st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "% " + "fake"))
       #st.write("URL appears to be: ", str(round(probs[0][1]*100, 2)) + "%", "fake")
       
       if prediction[0] < 0.5:
