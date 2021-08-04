@@ -22,6 +22,7 @@ def main():
   vectorizer_lr, vectorizer_nn, loaded_model_lr, loaded_model_nn = download_model()
   glove = download_files(glove_vect_size=300)
 
+  ref_data = pd.DataFrame(columns=['url','label'])
 
   st.sidebar.title("What you want to use")
   app_mode = st.sidebar.selectbox("Choose the modes here", 
@@ -36,7 +37,7 @@ def main():
     #if selection == 'Neural Network':
     
     #elif selection == 'Logistic Regression':
-
+    
     news_url = st.text_input("Paste news url")
     button = st.button('Summon AI fact checker')
     
@@ -77,7 +78,16 @@ def main():
         else:
           st.write("ATTENTION, URL appears to be fake news")
           #st.warning("Please check the news source and also reporter's bio")
-
+      st.subheader('if you have been just testing the app, could you please pay attention here')
+      st.info('you can help me improve the model by labeling the datasets, please follow few steps below')
+      selection_label = st.selectbox('Was the url you pasted actually fake?', ['yes','no'])
+      label = 0
+      if selection_label == 'yes':
+        label=1
+      
+      new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
+      ref_data.append(new_data, ignore_index = True)
+      st.dataframe(ref_data)
       #st.write("Here is Neural Network architecture details that you are using")
       #st.write(loaded_model_nn)
       
