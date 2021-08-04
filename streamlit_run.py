@@ -87,8 +87,9 @@ def main():
       if radio_label == 'yes':
         label=1
       
-    new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
-    ref_data.append(new_data, ignore_index = True)
+    #new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
+    ref_data.append({'url': news_url}, ignore_index = True)
+    ref_data.append({'label': label}, ignore_index = True)
     st.dataframe(ref_data)
       #st.write("Here is Neural Network architecture details that you are using")
       #st.write(loaded_model_nn)
