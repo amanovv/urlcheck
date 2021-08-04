@@ -84,11 +84,11 @@ def main():
       st.info('you can help me improve the model by labeling the datasets, please follow few steps below')
       radio_label = st.radio('Was the url you pasted actually fake?', ('yes','no'))
       
-      if radio_label == 'yes':
-        label=1
-      if st.button("add the dataset"):
-        get_data().append({'url': news_url, 'label':label})
-      st.write(pd.DataFrame(get_data()))
+    if radio_label == 'yes':
+      label=1
+    if st.button("add the dataset"):
+      get_data().append({'url': news_url, 'label':label})
+    st.write(pd.DataFrame(get_data()))
 
     #new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
       #st.write("Here is Neural Network architecture details that you are using")
