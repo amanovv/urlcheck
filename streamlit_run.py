@@ -53,8 +53,9 @@ def main():
 
       st.balloons()
       col_lr, col_nn = st.beta_columns(2)
+
       with col_lr:
-        st.subheader("Here is what simple machine learning model thinks:")
+        st.subheader("Simple machine learning model thinks:")
 
         st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
         st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
@@ -62,10 +63,10 @@ def main():
           st.write("URL appears to be real news")
         else:
           st.write("ATTENTION, URL appears to be fake news")
-          st.warning("Please check the news source and also reporter's bio")
+          #st.warning("Please check the news source and also reporter's bio")
 
       with col_nn:
-        st.subheader("Here is what neural network thinks:")  
+        st.subheader("Neural network thinks:")  
         #st.subheader("Oooooo, you are using neural networks")
       
         st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
@@ -75,7 +76,7 @@ def main():
           st.write("URL appears to be real news")
         else:
           st.write("ATTENTION, URL appears to be fake news")
-          st.warning("Please check the news source and also reporter's bio")
+          #st.warning("Please check the news source and also reporter's bio")
 
       #st.write("Here is Neural Network architecture details that you are using")
       #st.write(loaded_model_nn)
