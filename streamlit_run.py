@@ -86,11 +86,21 @@ def main():
       
     if radio_label == 'yes':
       label=1
-      get_data().append({'url': news_url, 'label':label})
+      if news_url in get_data()['url'].values():
+        st.warning("seems like this url already in the dataset")
+      else:
+        get_data().append({'url': news_url, 'label':label})
     if st.button("add to the dataset, use this button only if selection is 'no' "):
-      get_data().append({'url': news_url, 'label':label})
-
-    st.write(pd.DataFrame(get_data()))
+      if news_url in get_data()['url'].values():
+        st.warning("seems like this url already in the dataset")
+      else:
+        get_data().append({'url': news_url, 'label':label})
+    dataframe = pd.DataFrame(get_data())
+    with st.beta_container():
+      st.write(dataframe)
+    #if st.button('Export current dataset and clear dataframe :)'):
+      #final_df = dataframe.unique()
+      #dataframe.iloc[0:0]
 
     #new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
       #st.write("Here is Neural Network architecture details that you are using")
