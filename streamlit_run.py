@@ -82,12 +82,14 @@ def main():
           #st.warning("Please check the news source and also reporter's bio")
     st.subheader('if you have been just testing the app, could you please pay attention here?')
     st.info('you can help me improve the model by labeling the datasets, especially more fake news examples, please follow few steps below')
-    radio_label = st.radio('Was the url actually fake?', ('yes','no'))
+    radio_label = st.radio('Was the url actually fake?', ('no','yes'))
       
     if radio_label == 'yes':
       label=1
-    if st.button("add the dataset"):
       get_data().append({'url': news_url, 'label':label})
+    if st.button("add to the dataset, use this button only if selection is 'no' "):
+      get_data().append({'url': news_url, 'label':label})
+
     st.write(pd.DataFrame(get_data()))
 
     #new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
