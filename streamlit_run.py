@@ -55,7 +55,7 @@ def main():
       col_lr, col_nn = st.beta_columns(2)
 
       with col_lr:
-        st.subheader("Simple machine learning model thinks:")
+        st.subheader("Simple ML model thinks:")
 
         st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
         st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
