@@ -16,7 +16,7 @@ from tensorflow.keras.models import load_model
 import tensorflow.keras.optimizers as optimizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Activation, MaxPooling2D, Dropout, Flatten, Reshape, Dense, Conv2D
-
+import pandas as pd
 def main():
   
   vectorizer_lr, vectorizer_nn, loaded_model_lr, loaded_model_nn = download_model()
