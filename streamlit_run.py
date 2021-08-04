@@ -80,9 +80,9 @@ def main():
           #st.warning("Please check the news source and also reporter's bio")
       st.subheader('if you have been just testing the app, could you please pay attention here')
       st.info('you can help me improve the model by labeling the datasets, please follow few steps below')
-      selection_label = st.selectbox('Was the url you pasted actually fake?', ['yes','no'])
+      radio_label = st.radio('Was the url you pasted actually fake?', ('yes','no'))
       label = 0
-      if selection_label == 'yes':
+      if radio_label == 'yes':
         label=1
       
       new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
