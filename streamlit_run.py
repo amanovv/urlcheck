@@ -42,7 +42,7 @@ def main():
     
     news_url = st.text_input("Paste news url")
     button = st.button('Summon AI fact checker')
-    
+    label = 0
     if button:
       url, html = get_data_pair(news_url)
       #st.subheader("Alright, you are using Logistic Regression")
@@ -83,7 +83,7 @@ def main():
       st.subheader('if you have been just testing the app, could you please pay attention here')
       st.info('you can help me improve the model by labeling the datasets, please follow few steps below')
       radio_label = st.radio('Was the url you pasted actually fake?', ('yes','no'))
-      label = 0
+      
       if radio_label == 'yes':
         label=1
       
