@@ -18,7 +18,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Activation, MaxPooling2D, Dropout, Flatten, Reshape, Dense, Conv2D
 import pandas as pd
 
-ref_data = pd.DataFrame(columns=['url','label'])
+
 def main():
   
   vectorizer_lr, vectorizer_nn, loaded_model_lr, loaded_model_nn = download_model()
@@ -86,11 +86,11 @@ def main():
       
       if radio_label == 'yes':
         label=1
-      
+      if st.button("add the dataset"):
+        get_data().append({'url': news_url, 'label':label})
+      st.write(pd.DataFrame(get_data()))
+
     #new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
-    ref_data.append({'url': news_url}, ignore_index = True)
-    ref_data.append({'label': label}, ignore_index = True)
-    st.dataframe(ref_data)
       #st.write("Here is Neural Network architecture details that you are using")
       #st.write(loaded_model_nn)
       
@@ -233,6 +233,9 @@ def download_model():
 
   return vectorizer_lr, vectorizer_nn, loaded_model, loaded_model_nn
 
+@st.cache(allow_output_mutation=True)
+def get_data():
+  return []
 
 #@st.cache(), no need for streamlit caching, torchtext does caching automatically
 def download_files(glove_vect_size):
