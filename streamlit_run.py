@@ -17,12 +17,14 @@ import tensorflow.keras.optimizers as optimizers
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Activation, MaxPooling2D, Dropout, Flatten, Reshape, Dense, Conv2D
 import pandas as pd
+
+ref_data = pd.DataFrame(columns=['url','label'])
 def main():
   
   vectorizer_lr, vectorizer_nn, loaded_model_lr, loaded_model_nn = download_model()
   glove = download_files(glove_vect_size=300)
 
-  ref_data = pd.DataFrame(columns=['url','label'])
+  
 
   st.sidebar.title("What you want to use")
   app_mode = st.sidebar.selectbox("Choose the modes here", 
