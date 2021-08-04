@@ -52,28 +52,30 @@ def main():
 
 
       st.balloons()
-      st.subheader("Here is what simple machine learning model thinks:")
+      col_lr, col_nn = st.beta_columns(2)
+      with col_lr:
+        st.subheader("Here is what simple machine learning model thinks:")
 
-      st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
-      st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
-      if y_output < 0.5:
-        st.write("URL appears to be real news")
-      else:
-        st.write("ATTENTION, URL appears to be fake news")
-        st.warning("Please check the news source and also reporter's bio")
+        st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
+        st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
+        if y_output < 0.5:
+          st.write("URL appears to be real news")
+        else:
+          st.write("ATTENTION, URL appears to be fake news")
+          st.warning("Please check the news source and also reporter's bio")
 
-      st.subheader("Here is what neural network thinks:")  
-      #st.subheader("Oooooo, you are using neural networks")
+      with col_nn:
+        st.subheader("Here is what neural network thinks:")  
+        #st.subheader("Oooooo, you are using neural networks")
       
-      
-      st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
-      st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "% " + "fake"))
-      
-      if prediction[0] < 0.5:
-        st.write("URL appears to be real news")
-      else:
-        st.write("ATTENTION, URL appears to be fake news")
-        st.warning("Please check the news source and also reporter's bio")
+        st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
+        st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "% " + "fake"))
+        
+        if prediction[0] < 0.5:
+          st.write("URL appears to be real news")
+        else:
+          st.write("ATTENTION, URL appears to be fake news")
+          st.warning("Please check the news source and also reporter's bio")
 
       #st.write("Here is Neural Network architecture details that you are using")
       #st.write(loaded_model_nn)
