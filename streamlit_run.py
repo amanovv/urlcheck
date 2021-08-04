@@ -82,7 +82,7 @@ def main():
           #st.warning("Please check the news source and also reporter's bio")
     st.subheader('if you have been just testing the app, could you please pay attention here?')
     st.info('you can help me improve the model by labeling the datasets, especially more fake news examples, please follow few steps below')
-    radio_label = st.radio('Was the url you pasted actually fake?', ('yes','no'))
+    radio_label = st.radio('Was the url actually fake?', ('yes','no'))
       
     if radio_label == 'yes':
       label=1
