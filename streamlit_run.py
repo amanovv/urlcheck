@@ -86,12 +86,12 @@ def main():
       
     if radio_label == 'yes':
       label=1
-      if news_url in get_data()['url'].values():
+      if news_url in get_data().values():
         st.warning("seems like this url already in the dataset")
       else:
         get_data().append({'url': news_url, 'label':label})
     if st.button("add to the dataset, use this button only if selection is 'no' "):
-      if news_url in get_data()['url'].values():
+      if news_url in get_data().values():
         st.warning("seems like this url already in the dataset")
       else:
         get_data().append({'url': news_url, 'label':label})
