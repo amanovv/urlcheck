@@ -55,7 +55,7 @@ def main():
 
 
       st.balloons()
-      col_lr, col_nn = st.beta_columns(2)
+      col_lr, col_nn = st.columns(2)
 
       with col_lr:
         st.subheader("Simple ML model thinks:")
