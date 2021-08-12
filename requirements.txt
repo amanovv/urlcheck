@@ -133,7 +133,7 @@ six==1.15.0
 smmap==4.0.0
 soupsieve==2.2.1
 Sphinx==1.8.5
-streamlit==0.85.1
+streamlit==0.86.0
 tensorboard==2.5.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.0
