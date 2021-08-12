@@ -90,7 +90,7 @@ def main():
     if st.button("add to the dataset, use this button only if selection is 'no' "):
       get_data().append({'url': news_url, 'label':label})
     dataframe = pd.DataFrame(get_data())
-    with st.beta_container():
+    with st.container():
       st.write(dataframe)
     #if st.button('Export current dataset and clear dataframe :)'):
       #final_df = dataframe.unique()
