@@ -45,7 +45,7 @@ def main():
     label = 0
 
     if news_url is not None: 
-      with button:
+      if button:
         url, html = get_data_pair(news_url)
         #st.subheader("Alright, you are using Logistic Regression")
 
