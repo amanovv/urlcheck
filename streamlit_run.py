@@ -43,62 +43,60 @@ def main():
     news_url = st.text_input("Paste news url")
     button = st.button('Summon AI fact checker')
     label = 0
-    if button:
-      url, html = get_data_pair(news_url)
-      #st.subheader("Alright, you are using Logistic Regression")
 
-      input_X, input_X_nn = featurize_data_pair(url,html,vectorizer_lr,vectorizer_nn,glove,glove_vect_size=300)
-      y_output = loaded_model_lr.predict(input_X)[0]
-      probs=loaded_model_lr.predict_proba(input_X)
-      output_nn = loaded_model_nn.predict(np.array(input_X_nn))
-      prediction = loaded_model_nn.predict_classes(np.array(input_X_nn))
+    if news_url is not None: 
+      if button:
+        url, html = get_data_pair(news_url)
+        #st.subheader("Alright, you are using Logistic Regression")
+
+        input_X, input_X_nn = featurize_data_pair(url,html,vectorizer_lr,vectorizer_nn,glove,glove_vect_size=300)
+        y_output = loaded_model_lr.predict(input_X)[0]
+        probs=loaded_model_lr.predict_proba(input_X)
+        output_nn = loaded_model_nn.predict(np.array(input_X_nn))
+        prediction = loaded_model_nn.predict_classes(np.array(input_X_nn))
 
 
-      st.balloons()
-      col_lr, col_nn = st.columns(2)
+        st.balloons()
+        col_lr, col_nn = st.columns(2)
 
-      with col_lr:
-        st.subheader("Simple ML model thinks:")
+        with col_lr:
+          st.subheader("Simple ML model thinks:")
 
-        st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
-        st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
-        if y_output < 0.5:
-          st.write("URL appears to be real news")
-        else:
-          st.write("ATTENTION, URL appears to be fake news")
-          #st.warning("Please check the news source and also reporter's bio")
+          st.success("REALNESS percentage: " + (str(round(probs[0][0]*100, 2)) + "% " + "real"))
+          st.error("FAKENESS percentage: " + (str(round(probs[0][1]*100, 2)) + "% " + "fake"))
+          if y_output < 0.5:
+            st.write("URL appears to be real news")
+          else:
+            st.write("ATTENTION, URL appears to be fake news")
+            #st.warning("Please check the news source and also reporter's bio")
 
-      with col_nn:
-        st.subheader("Neural network thinks:")  
-        #st.subheader("Oooooo, you are using neural networks")
-      
-        st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
-        st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "% " + "fake"))
+        with col_nn:
+          st.subheader("Neural network thinks:")  
+          #st.subheader("Oooooo, you are using neural networks")
         
-        if prediction[0] < 0.5:
-          st.write("URL appears to be real news")
-        else:
-          st.write("ATTENTION, URL appears to be fake news")
-          #st.warning("Please check the news source and also reporter's bio")
-    st.subheader('if you have been just testing the app, could you please pay attention here?')
-    st.info('you can help me improve the model by labeling the datasets, especially more fake news examples, please follow few steps below')
-    radio_label = st.radio('Was the url actually fake?', ('no','yes'))
+          st.success("REALNESS percentage: " + (str(round(output_nn[0][0]*100, 2)) + "% " + " real"))
+          st.error("FAKENESS percentage: " + (str(round(output_nn[0][1]*100, 2)) + "% " + "fake"))
+          
+          if prediction[0] < 0.5:
+            st.write("URL appears to be real news")
+          else:
+            st.write("ATTENTION, URL appears to be fake news")
+            #st.warning("Please check the news source and also reporter's bio")
+      st.subheader('if you have been just testing the app, could you please pay attention here?')
+      st.info('you can help me improve the model by labeling the datasets, especially more fake news examples, please follow few steps below')
+      radio_label = st.select_slider('Was the url actually fake?', options=['no','yes'])
+        
       
-    if radio_label == 'yes':
-      label=1
-      get_data().append({'url': news_url, 'label':label})
-    if st.button("add to the dataset, use this button only if selection is 'no' "):
-      get_data().append({'url': news_url, 'label':label})
-    dataframe = pd.DataFrame(get_data())
-    with st.container():
-      st.write(dataframe)
-    #if st.button('Export current dataset and clear dataframe :)'):
-      #final_df = dataframe.unique()
-      #dataframe.iloc[0:0]
+      if radio_label == 'yes':
+        label=1
+        get_data().append({'url': news_url, 'label':label})
+      #if st.button("add to the dataset, use this button only if selection is 'no' "):
+      elif radio_label == 'no':
+        get_data().append({'url': news_url, 'label':label})
+      dataframe = pd.DataFrame(get_data())
+      with st.container():
+        st.write(dataframe)
 
-    #new_data = pd.DataFrame([[news_url, label]], columns=['url','label'], index=['a', 'b'])
-      #st.write("Here is Neural Network architecture details that you are using")
-      #st.write(loaded_model_nn)
       
 
   elif app_mode == "Train from scratch":
