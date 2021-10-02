@@ -90,6 +90,9 @@ def main():
         
       dataset_button = st.button("Add to the dataset")
       
+      if not news_url:
+        st.header('Fuck you!')
+      
       label = 0
       if dataset_button:
         if radio_label == 'yes':
@@ -99,7 +102,6 @@ def main():
         elif radio_label == 'no':
           label = 0
           get_data().append({'url': news_url, 'label':label})
-      
       dataframe = pd.DataFrame(get_data())
       with st.container():
         st.write(dataframe)
