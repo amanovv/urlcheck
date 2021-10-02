@@ -86,7 +86,7 @@ def main():
       st.write(" ")
       st.subheader('if you have been just testing the app, could you please pay attention here?')
       st.info('you can help me improve the model by labeling the datasets, especially more fake news examples, please follow few steps below')
-      radio_label = st.radio('Was the url actually fake?', options=['no','yes'])
+      radio_label = st.radio('Was the url actually fake?', ('no','yes'))
         
       dataset_button = st.button("Add to the dataset")
       
