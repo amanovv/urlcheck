@@ -45,7 +45,7 @@ def main():
     label = 0
 
     if news_url is not None: 
-      if button:
+      with button:
         url, html = get_data_pair(news_url)
         #st.subheader("Alright, you are using Logistic Regression")
 
@@ -84,7 +84,7 @@ def main():
             #st.warning("Please check the news source and also reporter's bio")
       st.subheader('if you have been just testing the app, could you please pay attention here?')
       st.info('you can help me improve the model by labeling the datasets, especially more fake news examples, please follow few steps below')
-      radio_label = st.select_slider('Was the url actually fake?', options=['no','yes'])
+      radio_label = st.radio('Was the url actually fake?', options=['no','yes'])
         
       
       if radio_label == 'yes':
@@ -93,6 +93,7 @@ def main():
       #if st.button("add to the dataset, use this button only if selection is 'no' "):
       elif radio_label == 'no':
         get_data().append({'url': news_url, 'label':label})
+      
       dataframe = pd.DataFrame(get_data())
       with st.container():
         st.write(dataframe)
