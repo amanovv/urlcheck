@@ -42,8 +42,8 @@ def main():
     
     news_url = st.text_input("Paste news url")
     button = st.button('Summon AI fact checker')
-
-    if news_url is not None: 
+    
+    if not news_url: 
       if button:
         url, html = get_data_pair(news_url)
         #st.subheader("Alright, you are using Logistic Regression")
