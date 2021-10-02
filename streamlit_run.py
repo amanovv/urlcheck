@@ -90,18 +90,18 @@ def main():
         
       dataset_button = st.button("Add to the dataset")
       
-      if not news_url:
-        st.header('Fuck you!')
-      
       label = 0
       if dataset_button:
-        if radio_label == 'yes':
-          label=1
-          get_data().append({'url': news_url, 'label':label})
-        #if st.button("add to the dataset, use this button only if selection is 'no' "):
-        elif radio_label == 'no':
-          label = 0
-          get_data().append({'url': news_url, 'label':label})
+        if not news_url.isspace():
+          if radio_label == 'yes':
+            label=1
+            get_data().append({'url': news_url, 'label':label})
+          #if st.button("add to the dataset, use this button only if selection is 'no' "):
+          elif radio_label == 'no':
+            label = 0
+            get_data().append({'url': news_url, 'label':label})
+        else:
+          st.header('Fuck you!')
       dataframe = pd.DataFrame(get_data())
       with st.container():
         st.write(dataframe)
