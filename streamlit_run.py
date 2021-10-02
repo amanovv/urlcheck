@@ -42,7 +42,6 @@ def main():
     
     news_url = st.text_input("Paste news url")
     button = st.button('Summon AI fact checker')
-    label = 0
 
     if news_url is not None: 
       if button:
@@ -90,12 +89,15 @@ def main():
       radio_label = st.radio('Was the url actually fake?', options=['no','yes'])
         
       dataset_button = st.button("Add to the dataset")
+      
+      label = 0
       if dataset_button:
         if radio_label == 'yes':
           label=1
           get_data().append({'url': news_url, 'label':label})
         #if st.button("add to the dataset, use this button only if selection is 'no' "):
         elif radio_label == 'no':
+          label = 0
           get_data().append({'url': news_url, 'label':label})
       
       dataframe = pd.DataFrame(get_data())
